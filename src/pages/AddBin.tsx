@@ -1,81 +1,95 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+import { useState } from 'react';
+import MapSelectorModal from './MapSelectorModal';
 
 const AddBin = () => {
   const [binId, setBinId] = useState('');
-  const [location, setLocation] = useState('');
-  const [binUserId, setBinUserId] = useState('');
-  const [message, setMessage] = useState('');
+  const [status, setStatus] = useState('');
+  const [error, setError] = useState('');
+  const [modalOpen, setModalOpen] = useState(false);
+  const [selectedCoords, setSelectedCoords] = useState<{ lat: number; lng: number } | null>(null);
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleAddBin = async () => {
+    setStatus('');
+    setError('');
+
+    if (!binId.trim()) {
+      setError('Bin ID is required');
+      return;
+    }
+
+    const latitude = selectedCoords?.lat;
+    const longitude = selectedCoords?.lng;
+
+    if (!latitude || !longitude) {
+      setError('Please select a location on the map.');
+      return;
+    }
 
     try {
-      const res = await axios.post('http://localhost:5000/api/bins/add', {
-        binId,
-        location,
-        binUserId,
+      const response = await fetch('http://localhost:5000/api/bins/add', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ binId, latitude, longitude }),
       });
 
-      setMessage(res.data.message);
+      const data = await response.json();
+
+      if (!response.ok) {
+        setError(data.message || 'Failed to add bin');
+        return;
+      }
+
+      setStatus('Bin added successfully at selected location!');
       setBinId('');
-      setLocation('');
-      setBinUserId('');
-    } catch (error: any) {
-      setMessage(error.response?.data?.message || 'Error adding bin');
+      setSelectedCoords(null);
+    } catch (err) {
+      console.error(err);
+      setError('Server error. Try again later.');
     }
   };
 
-  return (    <div className="max-w-xl mx-auto mt-10">
-      <div className="bg-gradient-to-br from-[#27354a] to-[#121b2f] shadow-lg rounded-2xl p-6 border border-[#27354a]/30">
-        <h2 className="text-2xl font-bold mb-6 text-white">Add New Bin</h2>
-        <form onSubmit={handleSubmit} className="space-y-5">
-          <div>            <label htmlFor="binId" className="block text-sm font-medium text-gray-300 mb-1">
-              Bin ID
-            </label>
-            <input
-              id="binId"
-              value={binId}
-              onChange={(e) => setBinId(e.target.value)}
-              required
-              className="w-full px-4 py-2 bg-[#1a1625] border border-[#27354a] text-white rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-[#27354a]"
-            />
-          </div>
+  return (
+    <div className="p-4 max-w-md mx-auto bg-[#121b2f] text-white rounded-lg shadow">
+      <h2 className="text-xl font-semibold mb-4">Add a New Bin</h2>
+      <input
+        type="text"
+        placeholder="Enter Bin ID"
+        value={binId}
+        onChange={(e) => setBinId(e.target.value)}
+        className="w-full mb-4 px-4 py-2 bg-[#1a1625] border border-[#27354a] text-white rounded"
+      />
+      <button
+        onClick={() => setModalOpen(true)}
+        className="w-full mb-2 py-2 bg-purple-600 rounded hover:bg-purple-700 transition"
+      >
+        Show Bin Location on Map
+      </button>
+      <button
+        onClick={handleAddBin}
+        className="w-full py-2 bg-blue-600 rounded hover:bg-blue-700 transition"
+      >
+        Add Bin
+      </button>
+      {selectedCoords && (
+        <p className="mt-2 text-sm text-gray-300">
+          Selected Location: {selectedCoords.lat.toFixed(5)}, {selectedCoords.lng.toFixed(5)}
+        </p>
+      )}
+      {status && <p className="mt-4 text-green-400">{status}</p>}
+      {error && <p className="mt-4 text-red-400">{error}</p>}
 
-          <div>            <label htmlFor="location" className="block text-sm font-medium text-gray-300 mb-1">
-              Location
-            </label>
-            <input
-              id="location"
-              value={location}
-              onChange={(e) => setLocation(e.target.value)}
-              required
-              className="w-full px-4 py-2 bg-[#1a1625] border border-[#27354a] text-white rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-[#27354a]"
-            />
-          </div>
-
-          <div>            <label htmlFor="binUserId" className="block text-sm font-medium text-gray-300 mb-1">
-              Bin User ID
-            </label>
-            <input
-              id="binUserId"
-              value={binUserId}
-              onChange={(e) => setBinUserId(e.target.value)}
-              required
-              className="w-full px-4 py-2 bg-[#1a1625] border border-[#27354a] text-white rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-[#27354a]"
-            />
-          </div>          <button
-            type="submit"
-            className="w-full bg-gradient-to-r from-[#27354a] to-[#121b2f] hover:from-[#324158] hover:to-[#1a2438] text-white font-medium py-2 px-4 rounded-md transition-colors duration-200 border border-[#27354a]/30"
-          >
-            Add Bin
-          </button>
-        </form>
-
-        {message && (
-          <p className="mt-4 text-sm text-center text-gray-700">{message}</p>
-        )}
-      </div>
+      {modalOpen && (
+        <MapSelectorModal
+          onClose={() => setModalOpen(false)}
+          onConfirm={(position: L.LatLng | null) => {
+            if (position) {
+              setSelectedCoords({ lat: position.lat, lng: position.lng });
+            } else {
+              setSelectedCoords(null);
+            }
+          }}
+        />
+      )}
     </div>
   );
 };
