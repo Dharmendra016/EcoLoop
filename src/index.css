@@ -1,0 +1,110 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: 'Inter', system-ui, sans-serif;
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply bg-gray-50 text-gray-900;
+  }
+}
+
+@layer components {
+  .container-custom {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+  
+  .btn {
+    @apply px-4 py-2 rounded-lg font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2;
+  }
+  
+  .btn-primary {
+    @apply btn bg-primary-600 text-white hover:bg-primary-700 focus:ring-primary-500;
+  }
+  
+  .btn-secondary {
+    @apply btn bg-secondary-600 text-white hover:bg-secondary-700 focus:ring-secondary-500;
+  }
+  
+  .btn-accent {
+    @apply btn bg-accent-500 text-white hover:bg-accent-600 focus:ring-accent-400;
+  }
+  
+  .card {
+    @apply bg-white rounded-xl shadow-card p-6;
+  }
+  
+  .input {
+    @apply w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500;
+  }
+  
+  .badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+  }
+  
+  .badge-organic {
+    @apply badge bg-waste-organic/10 text-waste-organic;
+  }
+  
+  .badge-plastic {
+    @apply badge bg-waste-plastic/10 text-waste-plastic;
+  }
+  
+  .badge-glass {
+    @apply badge bg-waste-glass/10 text-waste-glass;
+  }
+  
+  .badge-metal {
+    @apply badge bg-waste-metal/10 text-waste-metal;
+  }
+  
+  .badge-paper {
+    @apply badge bg-waste-paper/10 text-waste-paper;
+  }
+  
+  .badge-ewaste {
+    @apply badge bg-waste-ewaste/10 text-waste-ewaste;
+  }
+  
+  .nav-link {
+    @apply px-3 py-2 rounded-md text-sm font-medium;
+  }
+  
+  .nav-link-active {
+    @apply bg-primary-700 text-white;
+  }
+  
+  .nav-link-inactive {
+    @apply text-gray-300 hover:bg-primary-600 hover:text-white;
+  }
+}
+
+/* Animations */
+.fade-in {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.slide-in {
+  animation: slideIn 0.5s ease-out;
+}
+
+@keyframes slideIn {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* Map styles */
+.leaflet-container {
+  width: 100%;
+  height: 100%;
+  border-radius: 0.75rem;
+}
