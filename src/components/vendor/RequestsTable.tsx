@@ -27,13 +27,13 @@ const RequestsTable: React.FC<RequestsTableProps> = ({ requests }) => {
   };
 
   return (
-    <div className="card mt-6">
-      <h2 className="text-lg font-bold text-gray-800 mb-6">Request History</h2>
+    <div className="p-4 bg-gradient-to-br from-[#27354a] to-[#121b2f] rounded-lg shadow-lg border border-[#27354a]/30 mt-6">
+      <h2 className="text-lg font-bold text-white mb-6">Request History</h2>
       
       {sortedRequests.length > 0 ? (
         <div className="overflow-x-auto">
           <table className="min-w-full">
-            <thead className="bg-gray-50">
+            <thead className="bg-[#1a1625]">
               <tr>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Date
@@ -52,13 +52,13 @@ const RequestsTable: React.FC<RequestsTableProps> = ({ requests }) => {
                 </th>
               </tr>
             </thead>
-            <tbody className="bg-white divide-y divide-gray-200">
+            <tbody className="divide-y divide-[#27354a]/30">
               {sortedRequests.map((request) => {
                 const { icon: StatusIcon, colorClass, bgClass } = getStatusInfo(request.status);
                 
                 return (
                   <tr key={request.id}>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-300">
                       {new Date(request.createdAt).toLocaleDateString()}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
@@ -67,12 +67,12 @@ const RequestsTable: React.FC<RequestsTableProps> = ({ requests }) => {
                           className="w-3 h-3 rounded-full mr-2" 
                           style={{ backgroundColor: WASTE_COLORS[request.wasteType] }}
                         ></div>
-                        <span className="text-sm font-medium text-gray-900">
+                        <span className="text-sm font-medium text-white">
                           {WASTE_LABELS[request.wasteType]}
                         </span>
                       </div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-white">
                       {request.quantity}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
@@ -94,7 +94,7 @@ const RequestsTable: React.FC<RequestsTableProps> = ({ requests }) => {
         </div>
       ) : (
         <div className="text-center py-4">
-          <p className="text-gray-500">No requests found.</p>
+          <p className="text-gray-300">No requests found.</p>
         </div>
       )}
     </div>

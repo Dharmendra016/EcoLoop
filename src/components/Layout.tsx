@@ -43,6 +43,7 @@ const Layout: React.FC = () => {
       { name: 'User Impact', href: '/impact', icon: LineChart },
       { name: 'Bin Network', href: '/bin-network', icon: Map },
       { name: 'Add New Bin', href: '/new_bin', icon: Gift },
+      { name: 'Vendor demand', href: '/vendordemand', icon: Gift },
     ],
   };
 
@@ -60,7 +61,7 @@ const Layout: React.FC = () => {
             {/* Left: Logo */}
             <div className="flex items-center -ml-2">
               <Recycle className="h-8 w-8 text-white" />
-              <span className="ml-2 text-white text-xl font-bold">AuraSort</span>
+              <span className="ml-2 text-white text-xl font-bold">Pragya Bin</span>
             </div>
 
             {/* Right: Desktop Nav */}
@@ -174,7 +175,7 @@ const Layout: React.FC = () => {
         <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
           <div className="border-t border-gray-700 pt-6">
             <p className="text-sm text-gray-400 text-center">
-              &copy; {new Date().getFullYear()} AuraSort. All rights reserved.
+              &copy; {new Date().getFullYear()} Pragya Bin. All rights reserved.
             </p>
           </div>
         </div>

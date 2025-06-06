@@ -8,7 +8,7 @@ export default function LandingPage() {
       {/* Navbar */}
 <nav className="flex justify-between items-center p-6 bg-[#101722] shadow-[0_6px_20px_rgba(0,0,0,0.7)] backdrop-blur-md border-b border-[#1f2937]/60 z-50 relative">
   <div className="text-2xl font-extrabold tracking-wide text-green-400 drop-shadow-[0_0_6px_#22c55e]">
-    SmartWaste
+    Pragya Bin
   </div>
   <div className="space-x-4">
     <button
@@ -34,7 +34,7 @@ export default function LandingPage() {
           Digitizing Waste Management for Smarter Cities
         </h1>
         <p className="text-gray-400 text-lg md:text-xl max-w-2xl mb-10">
-          SmartWaste is an AI + IoT solution designed to help governments modernize waste sorting, streamline municipal operations, and collaborate efficiently with recyclers — all on one unified platform.
+          Pragya Bin is an AI + IoT solution designed to help governments modernize waste sorting, streamline municipal operations, and collaborate efficiently with recyclers — all on one unified platform.
         </p>
         <button
           onClick={() => navigate('/register')}
@@ -65,7 +65,7 @@ export default function LandingPage() {
 
       {/* Footer */}
       <footer className="bg-[#121826] text-center text-gray-500 py-6 border-t border-gray-700">
-        &copy; {new Date().getFullYear()} SmartWaste | Built for Impact.
+        &copy; {new Date().getFullYear()} Pragya Bin | Built for Impact.
       </footer>
     </div>
   );

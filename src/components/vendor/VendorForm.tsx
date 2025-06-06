@@ -48,10 +48,10 @@ const VendorForm: React.FC<VendorFormProps> = ({ onSubmit }) => {
   };
 
   return (
-    <div className="card">
+    <div className="p-4 bg-gradient-to-br from-[#27354a] to-[#121b2f] rounded-lg shadow-lg border border-[#27354a]/30">
       <div className="flex items-center mb-6">
-        <Package className="h-5 w-5 text-primary-500 mr-2" />
-        <h2 className="text-lg font-bold text-gray-800">Submit Demand</h2>
+        <Package className="h-5 w-5 text-gray-400 mr-2" />
+        <h2 className="text-lg font-bold text-white">Submit Demand</h2>
       </div>
       
       {submitted ? (
@@ -65,20 +65,20 @@ const VendorForm: React.FC<VendorFormProps> = ({ onSubmit }) => {
       ) : (
         <form onSubmit={handleSubmit}>
           {error && (
-            <div className="mb-4 p-3 bg-red-50 text-red-700 rounded-lg text-sm">
+            <div className="mb-4 p-3 bg-[#1a1625] text-red-400 rounded-lg text-sm border border-red-400/30">
               {error}
             </div>
           )}
           
           <div className="mb-4">
-            <label htmlFor="waste-type" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="waste-type" className="block text-sm font-medium text-gray-300 mb-1">
               Waste Type
             </label>
             <select
               id="waste-type"
               value={wasteType}
               onChange={(e) => setWasteType(e.target.value)}
-              className="input"
+              className="w-full px-4 py-2 bg-[#1a1625] border border-[#27354a] text-white rounded-md focus:outline-none focus:ring-2 focus:ring-[#27354a]"
               required
             >
               <option value="">Select waste type</option>
@@ -91,7 +91,7 @@ const VendorForm: React.FC<VendorFormProps> = ({ onSubmit }) => {
           </div>
           
           <div className="mb-6">
-            <label htmlFor="quantity" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="quantity" className="block text-sm font-medium text-gray-300 mb-1">
               Quantity (kg)
             </label>
             <input
@@ -99,14 +99,14 @@ const VendorForm: React.FC<VendorFormProps> = ({ onSubmit }) => {
               type="number"
               value={quantity}
               onChange={(e) => setQuantity(e.target.value)}
-              className="input"
+              className="w-full px-4 py-2 bg-[#1a1625] border border-[#27354a] text-white rounded-md focus:outline-none focus:ring-2 focus:ring-[#27354a]"
               placeholder="Enter quantity in kg"
               min="1"
               required
             />
           </div>
           
-          <button type="submit" className="btn btn-primary w-full">
+          <button type="submit" className="w-full px-4 py-2 bg-[#27354a] hover:bg-[#324158] text-white font-medium rounded-md transition-colors duration-200 border border-[#27354a]/30">
             Submit Request
           </button>
         </form>

@@ -1,5 +1,5 @@
 /*
-  # Initial schema for AuraSort
+  # Initial schema for Pragya Bin
 
   1. New Tables
     - users

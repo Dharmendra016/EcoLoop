@@ -9,7 +9,7 @@ interface RedeemModalProps {
 
 const RedeemModal: React.FC<RedeemModalProps> = ({ amount, onClose }) => {
   // Generate random QR code URL from placeholder service
-  const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=AuraSort-Coupon-${amount}-${Date.now()}`;
+  const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=Pragya Bin-Coupon-${amount}-${Date.now()}`;
   
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">

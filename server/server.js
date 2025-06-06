@@ -30,7 +30,7 @@ app.use("/api/vendors", vendorRoutes);
 
 // Root test route
 app.get("/", (req, res) => {
-  res.send("AuraSort Backend Running");
+  res.send("Pragya Bin Backend Running");
 });
 
 const PORT = process.env.PORT || 5000;

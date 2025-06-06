@@ -12,6 +12,8 @@ import LandingPage from './pages/Landing';
 import Register from './pages/Register';
 import Signin from './pages/Signin';
 import AddBin from './pages/AddBin';
+import AuthorityDemandDashboard from './pages/VendorDemand';
+
 function App() {
   return (
     <DataProvider>
@@ -29,6 +31,8 @@ function App() {
               <Route path="/authority" element={<AdminPortal />} />
               <Route path="/vendor" element={<VendorPortal />} />
               <Route path="/new_bin" element={<AddBin />} />
+              <Route path="/new_bin" element={<AddBin />} />
+              <Route path="/vendordemand" element={<AuthorityDemandDashboard />} />
             </Route>
           </Routes>
         </div>
