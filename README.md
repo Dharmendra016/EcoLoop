@@ -68,7 +68,7 @@ An AI-powered, IoT-enabled waste management solution that automatically classifi
 - 👨‍💻 [Bipin Kumar Marasini][(https://github.com/Bipin-km)]
 - 👩‍💻 [Dharmendra Singh Chaudhary] [(https://github.com/Dharmendra016)]
 - 👨‍🔧 [Nitesh Kumar Sah] [(https://github.com/nitesh-0)]
-- 🧑‍💼 [Ramesh Kathayat] 
+- 🧑‍💼 [Ramesh Kathayat]  [(https://github.com/ramesh34-hub)]
 
 ---
 
